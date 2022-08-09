@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Thekolaya</title>
+	<!-- include 'styles-titleIcon-included.php' -->
+	<link rel="icon" href="./vendors/images/thekolaya2.png" type="image/x-icon">
+	<link rel="stylesheet" href="./vendors/css/style.css">
+	<link rel="stylesheet" href="./vendors/css/nav-style.css">
+	<link rel="stylesheet" href="./vendors/css/nav-style2.css">
+	<link rel="stylesheet" href="./vendors/css/supervisor/table-style.css">
+	<link rel="stylesheet" href="./vendors/css/supervisor/table2-style.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<!--  php include 'top-container.php' -->
+	<div class="sidebar">
+		<div class="logo-details">
+			<div class="logo_name"><img src="./vendors/images/thekolaya-white.png" alt=""></div>
+			<i class="fas fa-bars" id="btn"></i>
+		</div>
+		<ul class="nav-list">
+			<li id="supervisor-dashboard">
+				<a href="supervisor">
+					<i class="fas fa-th-large"></i>
+					<span class="links_name">Dashboard</span>
+				</a>
+				<span class="tooltip">Dashboard</span>
+			</li>
+
+			<li id="update-tea-measure">
+				<a href="updateTeaMeasure">
+					<i class="fas fa-weight"></i>
+					<span class="links_name">Update Net-Weight</span>
+				</a>
+				<span class="tooltip">Update Net-Weight</span>
+			</li>
+			<li id="supervisor-manage-fertilzer-requests">
+				<a href="manageFertilizerRequests">
+					<i class="fab fa-acquisitions-incorporated"></i>
+					<span class="links_name">Requests</span>
+				</a>
+				<span class="tooltip">Requests</span>
+			</li>
+			<li>
+				<a href="/Supervisor/manageFertilizer">
+					<i class="fas fa-tree"></i>
+					<span class="links_name">Fertilizer</span>
+				</a>
+				<span class="tooltip">Fertilizer</span>
+			</li>
+			<li>
+				<a href="/Supervisor/manageFirewood">
+					<i class="fas fa-fire"></i>
+					<span class="links_name">Firewood</span>
+				</a>
+				<span class="tooltip">Firewood</span>
+			</li>
+		</ul>
+
+		<div class="social_media_icon">
+			<div class="social_media">
+				<a href="#"><i class="fab fa-facebook-f"></i></a>
+				<a href="#"><i class="fab fa-twitter"></i></a>
+				<a href="#"><i class="fab fa-instagram"></i></a>
+			</div>
+		</div>
+
+	</div>
+	<section class="home-section">
+		<div class="wrapper">
+			<div class="navbar">
+				<div class="navbar_left">
+					<div class="thekolya-logo"><img src="./vendors/images/thekolaya.png" alt=""></div>
+				</div>
+				<div class="navbar_right">
+					<!-- Newly added -->
+					<div class="icons">
+						<div class="notification">
+							<div class="notBtn">
+								<!-- $notificationCount = '';
+              if ($_SESSION['NotSeenCount'] >= 100) {
+                $notificationCount = 99;
+              } else if ($_SESSION['NotSeenCount']) {
+                $notificationCount = $_SESSION['NotSeenCount'];
+              } -->
+								<!-- Using AJAX Update notification_count -->
+								<div class="notiNumber" id="notification_count">
+									<!-- echo $notificationCount -->
+
+								</div>
+
+								<i class="fas fa-bell notification_bell"></i>
+								<div class="notiBox">
+									<!-- <div style="padding: 15px 0 15px 30px; font-size: 1.5rem; font-weight:bold; background-color:#27ae60;">
+                  Notifications
+                </div> -->
+									<div class="notification_header">
+										<div class="notification_top">Notifications</div>
+										<button id="notification_all_btn">All</button>
+										<button id="notification_unread_btn">Unread</button>
+									</div>
+									<div class="display">
+										<div class="cont" id="get_nofication">
+											<!-- Get Notification to here Using AJAX-->
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="noti-modal">
+								<div class="noti-modal-content">
+									<span class="noti-modal-close-button">×</span>
+									<div>Add Your Content Here !</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ------------------------------ -->
+					<!-- include '../app/views/user/profile/navBarProfile.php' -->
+				</div>
+			</div>
+		</div>
+
+		<div id="supervisor-root">
+			<link rel="stylesheet" href="./vendors/css/supervisor/form-style.css">
+			<link rel="stylesheet" href="./vendors/css/supervisor/supervisor-style.css">
+			<div class="title-container">
+				<h2>Supervisor</h2>
+			</div>
+			<div class="middle-container">
+				<div class="graph-container">
+					<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+					<!-- include 'js/supervisor/dashboard-chart.php' -->
+				</div>
+				<div class="agent-tea-table">
+					<div class="table-wrapper">
+						<div class="table_header">Today tea collection</div>
+						<div class="table" id="today_collection_table">
+							<div class="row tabel-header">
+								<div class="cell">Landowner ID</div>
+								<div class="cell">Tea Weight(kg)</div>
+								<div class="cell">Agent ID</div>
+							</div>
+							<!-- <div class="row">
+                      <div class="cell" data-title="Landowener_id">' . $data1[$i]['lid'] . '</div>
+                      <hr class="horizontal-line">
+                      <div class="cell" data-title="Tea_weight">' . $data1[$i]['initial_weight_agent'] . '</div>
+                      <hr class="horizontal-line">
+                      <div class="cell" data-title="Agent_id">' . $data1[$i]['agent_id'] . '</div>
+                    </div> -->
+						</div>
+					</div>
+					<!-- 
+<div id="not_display_collection_yet" style="border-radius: 0px; color:red; background-color: white;" class="table_header" >There is no tea collection to update</div>
+  -->
+				</div>
+
+				<div class="request-table">
+					<div class="table-wrapper" style="max-height:250px">
+						<div class="table_header">Today Fertilizer Requests</div>
+						<div class="table" id="today_request_table">
+							<div class="row tabel-header">
+								<div class="cell">Landowner ID</div>
+								<div class="cell">Name</div>
+								<div class="cell">Reqeust Amount</div>
+							</div>
+							<!-- <div class="row">
+                    <div class="cell" data-title="Landowener ID">' . $data2[$i]['user_id'] . '</div>
+                    <hr class="horizontal-line">
+                    <div class="cell" data-title="Name">' . $data2[$i]['name'] . '</div>
+                    <hr class="horizontal-line">
+                    <div class="cell" data-title="Request Amount">' . $data2[$i]['amount'] . '</div>
+                  </div> -->
+						</div>
+					</div>
+
+					<!-- <div id="not_display_request_yet" style="border-radius: 0px; color:red; background-color: white;" class="table_header" >There is no Request to update</div>
+ -->
+					<!-- <div style="padding: 10px;">
+        <a style="margin-bottom: 10px;" href="./Supervisor/manageRequests"><button class="table-btn">Go to confirm</button></a>
+      </div> -->
+				</div>
+
+			</div>
+		</div>
+
+		<script src="./vendors/js/jquery-3.6.0.min.js"></script>
+		<script src="./views/supervisor/supervisor.js" type="text/javascript"></script>
+		<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+		<!-- <script>
+    $(document).ready(function() {
+      $("#today_request_table").click(function(event) {
+        if (!$(event.target.parentNode).hasClass("tabel-header")) {
+          window.location.href = "<?php echo URL?>Supervisor/manageRequests";
+        }
+      });
+
+      $("#today_collection_table").click(function(event) {
+        if (!$(event.target.parentNode).hasClass("tabel-header")) {
+          window.location.href = "<?php echo URL?>Supervisor/updateTeaMeasure";
+        }
+      });
+    })
+  </script>  -->
+		<!-- include 'js/supervisor/supervisorJs.php' -->
+		<!-- include 'bottom-container.php' -->
+	</section>
+
+	<script src="./vendors/js/app.js"></script>
+	<script src="./vendors/supervisor/js/handle.js"></script>
+	<!-- include 'js/navJs.php' -->
+	<script>
+		$(".notiBox").click(function (event) {
+			var notificationId = event.target.parentNode;
+			var messageDiv = "";
+
+			if ($(notificationId).hasClass('profCont')) {
+				notificationId = notificationId.parentNode;
+			}
+			if ($(notificationId).hasClass('request')) {
+				window.location.href = "Supervisor/manageRequests";
+			}
+		})
+	</script>
+</body>
+
+</html>
